@@ -14,14 +14,16 @@ class RentsController < ApplicationController
     @rent = Rent.new
   end
 
+
   def create
     @bike = Bike.find(params[:bike_id])
-    @rent = @bike.rents.create(rent_params)
-
+    @rent = Rent.new(rent_params)
+    @rent.bike = @bike
+    @rent.user = current_user
     if @rent.save
-      redirect_to @rent, notice: 'Rent was successfully created.'
+      redirect_to rent_path(@rent), notice: 'Rent was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

@@ -1,1 +1,18 @@
-<h1> create a new rent request </h1>
+<div class="container my-5 py-5 bg-light">
+  <h2 class="text-center mb-5">Rent this <%= @bike.brand%>  bike</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= simple_form_for [@bike, @rent] do |f| %>
+        <div class="form-group">
+          <%= f.input :start_date, as: :date, label: "Start Date", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.input :end_date, as: :date, label: "End Date", class: "form-control" %>
+        </div>
+        <div class="form-group text-center">
+          <%= f.button :submit, "Book this Bike !", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
