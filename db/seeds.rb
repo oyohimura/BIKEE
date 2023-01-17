@@ -8,13 +8,31 @@
 require "open-uri"
 
 Bike.destroy_all
+User.destroy_all
+Rent.destroy_all
 
 puts "Destroying database!"
+
+puts "Generating example user..."
+user = User.new(
+  password: 'chdiuoiu125%%',
+  email: 'clara@gmail.com',
+  first_name: 'clara'
+)
+user.save!
+
+user = User.new(
+  password: 'chdiuoissu125%%',
+  email: 'bob@gmail.com',
+  first_name: 'bob'
+)
+user.save!
 
 file = URI.open("https://cdn.shopify.com/s/files/1/0308/7024/1420/products/blue-R-1_870x580.jpg?v=1668396768")
 
 bike1 = Bike.new(brand: "Decathlon", model: "Riverside", location: "Paris", user_id: 1, price: 8, electric: true)
 bike1.picture.attach(io: file, filename: "bike_decathlon.jpg", content_type: "image/jpg")
+bike1.user = User.last
 bike1.save!
 
 puts "Generating first bike..."
@@ -22,6 +40,7 @@ puts "Generating first bike..."
 file = URI.open("https://cdn.shopify.com/s/files/1/0308/7024/1420/products/blue-R-1_870x580.jpg?v=1668396768")
 bike2 = Bike.new(brand: "Peugeot", model: "T02", location: "Bordeaux", user_id: 1, price: 10, electric: false)
 bike2.picture.attach(io: file, filename: "bike_decathlon.jpg", content_type: "image/jpg")
+bike2.user = User.first
 bike2.save!
 
 puts "Generating second bike..."
@@ -29,8 +48,20 @@ puts "Generating second bike..."
 file = URI.open("https://cdn.shopify.com/s/files/1/0308/7024/1420/products/blue-R-1_870x580.jpg?v=1668396768")
 bike3 = Bike.new(brand: "Trek", model: "FX 3", location: "Nantes", user_id: 1, price: 5, electric: false)
 bike3.picture.attach(io: file, filename: "bike_decathlon.jpg", content_type: "image/jpg")
+bike3.user = User.last
 bike3.save!
 
 puts "Generating third bike..."
+
+puts "Generating example rent..."
+rent = Rent.new(
+  start_date: "2013-02-02 01:00:00 UTC",
+  end_date: "2013-02-04 01:00:00 UTC",
+  rent_price: 50.2,
+  status: 'confirmed'
+)
+rent.user = User.last
+rent.bike = Bike.first
+rent.save!
 
 puts "Finished!"

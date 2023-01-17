@@ -1,1 +1,30 @@
-<h1>My Dashboard</h1>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12">
+      <h1>Dashboard</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h2>My bikes:</h2>
+      <% @bikes.each do |bike| %>
+        <div class="col-md-4">
+          <p>Model: <%= bike.model %></p>
+          <p>Brand: <%= bike.brand %></p>
+          <p>My price: <%= bike.price %></p>
+          <p>Renting it in the following location: <%= bike.location %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h2>Rentals:</h2>
+      <% @rents.each do |rent| %>
+        <div class="col-md-4">
+          <p>Price : <%= rent.rent_price %></p>
+          <p>Bike : <%= rent.bike.model %> </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
