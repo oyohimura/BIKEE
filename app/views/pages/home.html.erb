@@ -1,2 +1,56 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12">
+      <h1>Welcome to BIKEE - rent a bike anywhere!</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h1>We are...</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h1>Our bike collection below!</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @bikes.each do |bike| %>
+      <div class="col-md-4">
+        <div class="bike-card">
+          <div class="bike-card-image" style="background-image: url('<%= cl_image_path bike.picture.key, crop: :fill %>')"></div>
+          <div class="bike-card-content">
+            <div class="bike-card-title">
+              <h4><%= bike.brand %></h4>
+              <h5><%= bike.model %></h5>
+            </div>
+            <div class="flex">
+              <div class="flex align-items-center">
+                <i class="fa-solid fa-euro-sign"></i>
+                <span><%= bike.price %></span>
+              </div>
+              <div class="flex align-items-center ms-3">
+                <i class="fa-light fa-location-dot"></i>
+                <span><%= bike.location %></span>
+              </div>
+              <div class="flex align-items-center ms-3">
+                <span>Electric ? <%= bike.electric %></span>
+              </div>
+            </div>
+          </div>
+          <div class="bike-card-actions">
+            <%= link_to "More info", bike_path(bike) %>
+            <%= link_to "Edit", edit_bike_path(bike), class: "ms-3 text-warning" %>
+            <%= link_to "Remove", bike_path(bike),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "ms-3 text-danger"
+            %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
