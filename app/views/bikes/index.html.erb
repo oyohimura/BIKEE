@@ -1,9 +1,44 @@
-<h1>List all bikes </h1>
-<ul>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12">
+      <h1>All our Bikes</h1>
+    </div>
+  </div>
 
+  <div class="row">
     <% @bikes.each do |bike| %>
-    <li>
-      <%= bike.brand %>
-    </li>
+      <div class="col-md-4">
+        <div class="bike-card">
+          <div class="bike-card-image" style="background-image: url('<%= cl_image_path bike.picture.key, crop: :fill %>')"></div>
+          <div class="bike-card-content">
+            <div class="bike-card-title">
+              <h4><%= bike.brand %></h4>
+              <h5><%= bike.model %></h5>
+            </div>
+            <div class="flex">
+              <div class="flex align-items-center">
+                <i class="fa-solid fa-euro-sign"></i>
+                <span><%= bike.price %></span>
+              </div>
+              <div class="flex align-items-center ms-3">
+                <i class="fa-light fa-location-dot"></i>
+                <span><%= bike.location %></span>
+              </div>
+              <div class="flex align-items-center ms-3">
+                <span>Electric ? <%= bike.electric %></span>
+              </div>
+            </div>
+          </div>
+          <div class="bike-card-actions">
+            <%= link_to "More info", bike_path(bike) %>
+            <%= link_to "Edit", edit_bike_path(bike), class: "ms-3 text-warning" %>
+            <%= link_to "Remove", bike_path(bike),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "ms-3 text-danger"
+            %>
+          </div>
+        </div>
+      </div>
     <% end %>
-</ul>
+  </div>
+</div>
