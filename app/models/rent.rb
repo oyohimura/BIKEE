@@ -5,4 +5,10 @@ class Rent < ApplicationRecord
   validates :end_date, presence: true
   validates :rent_price, presence: true, numericality: true
   validates :status, presence: true
+  validate :start_end_check
+
+  def start_end_check
+    errors.add(:end_date, "Your start date cannot be after your end date") unless
+    self.start_date < self.end_date
+  end
 end
