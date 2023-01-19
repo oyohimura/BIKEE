@@ -37,15 +37,15 @@ bike1.save!
 
 puts "Generating first bike..."
 
-file = URI.open("https://cdn.shopify.com/s/files/1/0308/7024/1420/products/blue-R-1_870x580.jpg?v=1668396768")
+file = URI.open("https://performancevelo.com/23264-superlarge_default/peugeot-lc01-d7.jpg")
 bike2 = Bike.new(brand: "Peugeot", model: "T02", location: "Bordeaux", user_id: 1, price: 10, electric: false)
-bike2.picture.attach(io: file, filename: "bike_decathlon.jpg", content_type: "image/jpg")
+bike2.picture.attach(io: file, filename: "bike_peugeot.jpg", content_type: "image/jpg")
 bike2.user = User.first
 bike2.save!
 
 puts "Generating second bike..."
 
-file = URI.open("https://cdn.shopify.com/s/files/1/0308/7024/1420/products/blue-R-1_870x580.jpg?v=1668396768")
+file = URI.open("https://static.cyclelab.eu/velos/trek/2007/highres/FX3Disc_22_35021_A_Primary.jpg")
 bike3 = Bike.new(brand: "Trek", model: "FX 3", location: "Nantes", user_id: 1, price: 5, electric: false)
 bike3.picture.attach(io: file, filename: "bike_decathlon.jpg", content_type: "image/jpg")
 bike3.user = User.last
