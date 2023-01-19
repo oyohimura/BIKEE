@@ -13,10 +13,10 @@ class Rent < ApplicationRecord
   end
 
   def rental_duration
-    (end_date - start_date) / 1.hour
+    ((end_date - start_date) / 1.hour).round
   end
 
   def total_price
-    rental_duration * rent_price
+    (rental_duration * rent_price).round
   end
 end

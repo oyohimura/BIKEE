@@ -37,15 +37,16 @@ class BikesController < ApplicationController
 
   def destroy
     @bike.destroy
-    redirect_to bikes_url, notice: 'Bike was successfully deleted.'
+    redirect_to bikes_path, notice: 'Bike was successfully deleted.'
   end
 
   private
-    def set_bike
-      @bike = Bike.find(params[:id])
-    end
 
-    def bike_params
-      params.require(:bike).permit(:brand, :model, :location, :user_id, :price, :electric, :picture)
-    end
+  def set_bike
+    @bike = Bike.find(params[:id])
+  end
+
+  def bike_params
+    params.require(:bike).permit(:brand, :model, :location, :user_id, :price, :electric, :picture)
+  end
 end

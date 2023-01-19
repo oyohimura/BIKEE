@@ -24,7 +24,6 @@
           <th>Brand</th>
           <th>Model</th>
           <th>Price per hour</th>
-          <th>Booking Status</th>
         </tr>
       </thead>
       <tbody>
@@ -32,7 +31,7 @@
           <tr>
             <td><%= bike.brand %></td>
             <td><%= bike.model %></td>
-            <td><%= bike.rent_price %></td>
+            <td><%= bike.price %></td>
           </tr>
         <% end %>
       </tbody>
@@ -61,7 +60,7 @@
           <td><%= rent.start_date %></td>
           <td><%= rent.end_date %></td>
           <td><%= rent.rental_duration %> hours</td>
-          <td><%= rent.total_price %></td>
+          <td><%= rent.total_price %>€</td>
           <td><%= rent.status %></td>
         </tr>
       <% end %>
