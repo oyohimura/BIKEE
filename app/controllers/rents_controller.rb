@@ -20,8 +20,10 @@ class RentsController < ApplicationController
     @rent = Rent.new(rent_params)
     @rent.bike = @bike
     @rent.user = current_user
+    @rent.status = "pending"
+    @rent.rent_price = Bike.find(params[:bike_id]).price
     if @rent.save
-      redirect_to rent_path(@rent), notice: 'Rent was successfully created.'
+      redirect_to dashboard_path, notice: 'Rent was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,7 +44,7 @@ class RentsController < ApplicationController
     end
 
     def rent_params
-      params.require(:rent).permit(:start_date, :end_date, :user_id, :bike_id, :rent_price, :approved)
+      params.require(:rent).permit(:start_date, :end_date, :user_id, :bike_id, :rent_price, :status)
     end
 
   end
