@@ -1,15 +1,16 @@
 <div class="container my-5 py-5 bg-light">
-  <h2 class="text-center mb-5">Rent this <%= @bike.brand%>  bike</h2>
+  <h2 class="text-center mb-5"> <%= @bike.brand%> <%= @bike.model%> bike</h2>
+  <h4 class="text-center mb-5"> Bike available in <%= @bike.location%></h4>
   <div class="row justify-content-center">
     <div class="col-md-8">
       <%= simple_form_for [@bike, @rent] do |f| %>
-        <div class="form-group">
-          <%= f.input :start_date, as: :date, label: "Start Date", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.input :end_date, as: :date, label: "End Date", class: "form-control" %>
-        </div>
         <div class="form-group text-center">
+          <%= f.datetime_select :start_date, label: "Start Date", class: "form-control" %>
+        </div>
+        <div class="form-group text-center mt-2">
+          <%= f.datetime_select :end_date, label: "End Date", class: "form-control" %>
+        </div>
+        <div class="form-group text-center mt-3">
           <%= f.button :submit, "Book this Bike !", class: "btn btn-primary" %>
         </div>
       <% end %>
