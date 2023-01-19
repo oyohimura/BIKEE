@@ -1,7 +1,6 @@
 class RentsController < ApplicationController
   before_action :set_rent, only: [:show, :edit, :update, :destroy]
 
-
   def index
     @rents = Rent.all
   end
@@ -13,7 +12,6 @@ class RentsController < ApplicationController
     @bike = Bike.find(params[:bike_id])
     @rent = Rent.new
   end
-
 
   def create
     @bike = Bike.find(params[:bike_id])
@@ -30,7 +28,8 @@ class RentsController < ApplicationController
   end
 
   def owner_rents
-    @rents = Rent.where(user_id: current_user.id)
+    bikes = Bike.where(user: current_user)
+    @rents = Rent.where(bike: bikes)
   end
 
   def destroy

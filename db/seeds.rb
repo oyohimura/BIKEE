@@ -15,16 +15,20 @@ puts "Destroying database!"
 
 puts "Generating example user..."
 user = User.new(
-  password: 'chdiuoiu125%%',
-  email: 'clara@gmail.com',
-  first_name: 'clara'
+  password: 'Bob123$',
+  email: 'bob@gmail.com',
+  first_name: 'Bob',
+  last_name: 'Dupont',
+  address: 'rue de la mer, Paris'
 )
 user.save!
 
 user = User.new(
-  password: 'chdiuoissu125%%',
-  email: 'bob@gmail.com',
-  first_name: 'bob'
+  password: 'Clara123$',
+  email: 'clara@gmail.com',
+  first_name: 'Clara',
+  last_name: 'Moriconi',
+  address: 'rue de la montagne, Pyrenees'
 )
 user.save!
 
@@ -32,7 +36,7 @@ file = URI.open("https://cdn.shopify.com/s/files/1/0308/7024/1420/products/blue-
 
 bike1 = Bike.new(brand: "Decathlon", model: "Riverside", location: "Paris", user_id: 1, price: 8, electric: true)
 bike1.picture.attach(io: file, filename: "bike_decathlon.jpg", content_type: "image/jpg")
-bike1.user = User.last
+bike1.user = User.first
 bike1.save!
 
 puts "Generating first bike..."
@@ -57,6 +61,16 @@ puts "Generating example rent..."
 rent = Rent.new(
   start_date: "2013-02-02 01:00:00 UTC",
   end_date: "2013-02-04 01:00:00 UTC",
+  rent_price: 50.2,
+  status: 'confirmed'
+)
+rent.user = User.first
+rent.bike = Bike.last
+rent.save!
+
+rent = Rent.new(
+  start_date: "2014-02-02 01:00:00 UTC",
+  end_date: "2014-02-04 01:00:00 UTC",
   rent_price: 50.2,
   status: 'confirmed'
 )
