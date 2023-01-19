@@ -11,4 +11,12 @@ class Rent < ApplicationRecord
     errors.add(:end_date, "Your start date cannot be after your end date") unless
     self.start_date < self.end_date
   end
+
+  def rental_duration
+    (end_date - start_date) / 1.hour
+  end
+
+  def total_price
+    rental_duration * rent_price
+  end
 end
