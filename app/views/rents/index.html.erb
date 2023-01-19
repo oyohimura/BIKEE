@@ -1,1 +1,15 @@
-<h1> List all rents' requests </h1>
+<div class="container">
+  <h1> List all my rents </h1>
+
+  <% @rents.each do |rent| %>
+    <div class="bike-card-actions">
+      <p>Bike : <%= rent.bike.model %> from <%= rent.bike.brand %></p>
+      <p>From: <%= rent.start_date %> to <%= rent.end_date %></p>
+      <p>Cost: <%= rent.rent_price %></p>
+    </div>
+  <% end %>
+
+  <div class="bike-card-actions">
+    <%= link_to 'Back to dashboard', dashboard_path %>
+  </div>
+</div>

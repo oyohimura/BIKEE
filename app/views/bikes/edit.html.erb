@@ -1,1 +1,12 @@
-<h1> edit a Bike </h1>
+<div class="container">
+  <h1> Edit a Bike </h1>
+
+  <div class="bike-card-actions">
+    <%= link_to 'Back to bikes index', bikes_path %>
+    <%= link_to 'Back to bike', bike_path(@bike) %>
+    <%= link_to "Remove", bike_path(@bike),
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+        class: "ms-3 text-danger"
+    %>
+  </div>
+</div>

@@ -17,8 +17,10 @@
     <div class="col-4">
       <div class="bike-show-card">
         <h5>Book this bike!</h5>
-        <div class="btn btn-success text-decoration-none">
-          <%= link_to "Book now !", new_bike_rent_path(params[:id]) %>
+        <div>
+          <%= link_to new_bike_rent_path(params[:id]), class: 'btn btn-success text-decoration-none' do %>
+            Book now !
+          <% end %>
         </div>
       </div>
       <div class="bike-show-card">
@@ -26,26 +28,23 @@
         <div class="flex">
           <div class="flex">
             <% if @bike.electric%>
-            <p> Electric Bike ! </p>
+            <p> Electric bike ! </p>
              <% else %>
-            <p> Manual Bike ! </p>
+            <p> Muscular (manual) bike ! </p>
             <% end %>
           </div>
           <div class="flex ms-3">
-            <%= @bike.price%>€ per day
+            <%= @bike.price %>€ per day
           </div>
         </div>
       </div>
-      <div class="bike-show-card">
-        <div class="flex-align">
-          <h6 class="no-mb">Share</h6>
-
-          <div class="flex">
-            <i class="fa-brands fa-facebook-square me-2"></i>
-            <i class="fa-brands fa-twitter-square me-2"></i>
-            <i class="fa-brands fa-pinterest-square me-2"></i>
-          </div>
-        </div>
+      <div class="bike-card-actions">
+        <%= link_to 'Back to bikes index', bikes_path %>
+        <%= link_to "Edit", edit_bike_path(@bike), class: "ms-3 text-warning" %>
+        <%= link_to "Remove", bike_path(@bike),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+            class: "ms-3 text-danger"
+        %>
       </div>
     </div>
   </div>

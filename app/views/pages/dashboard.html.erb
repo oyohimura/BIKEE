@@ -6,25 +6,18 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <h2>My bikes:</h2>
-      <% @bikes.each do |bike| %>
-        <div class="col-md-4">
-          <p>Model: <%= bike.model %></p>
-          <p>Brand: <%= bike.brand %></p>
-          <p>My price: <%= bike.price %></p>
-          <p>Renting it in the following location: <%= bike.location %></p>
-        </div>
-      <% end %>
+      <%= link_to 'Create new bike', new_bike_path %>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <h2>Rentals:</h2>
-      <% @rents.each do |rent| %>
-        <div class="col-md-4">
-          <p>Price : <%= rent.rent_price %></p>
-          <p>Bike : <%= rent.bike.model %> </p>
-        </div>
-      <% end %>
+      <%= link_to "My rentals (as a bike user)", rents_path, class: "ms-3 text-warning" %>
+    </div>
+    <div class="col-12">
+      <%= link_to "My rentals (as an owner)", owner_rents_rents_path, class: "ms-3 text-warning" %>
+    </div>
+    <div class="col-12">
+      <%= link_to 'Back to bikes index', bikes_path %>
     </div>
   </div>
+</div>
