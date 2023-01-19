@@ -7,9 +7,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 
+Rent.destroy_all
 Bike.destroy_all
 User.destroy_all
-Rent.destroy_all
 
 puts "Destroying database!"
 
