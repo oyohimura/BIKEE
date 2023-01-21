@@ -1,13 +1,18 @@
 <div class="container">
   <h1> Rental requests for my bikes </h1>
-
+  <% total = [] %>
   <% @rents.each do |rent| %>
     <div class="bike-card-actions">
-      <p>Bike : <%= rent.bike.model %> from <%= rent.bike.brand %></p>
-      <p>Rented by: <%= "#{rent.user.first_name} #{rent.user.last_name}" %></p>
-      <p>From: <%= rent.start_date %> to <%= rent.end_date %>
+      <p>Bike :          <%= rent.bike.model %> from <%= rent.bike.brand %></p>
+      <p>Rented by:      <%= "#{rent.user.first_name} #{rent.user.last_name}" %></p>
+      <p>From:           <%= rent.start_date %> to <%= rent.end_date %>
+      <p>Total duration: <%= rent.rental_duration %> hours</p>
+      <p>Total price:    <%= rent.total_price %>€</p>
+      <% total << rent.total_price %>
     </div>
   <% end %>
+
+  <p>Total earnings</p><%= total.sum %>€
   <div class="bike-card-actions">
     <%= link_to 'Back to dashboard', dashboard_path %>
   </div>

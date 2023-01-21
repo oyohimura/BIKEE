@@ -1,23 +1,18 @@
 <div class="container mt-3">
   <div class="row">
-    <div class="col-12">
-      <%= link_to 'Create new bike', new_bike_path %>
+    <h1>Welcome to your dashboard <%= @user.first_name %></h1>
+      <div class="col-12">
+        <%= link_to 'Add a bike', new_bike_path %>
+      </div>
     </div>
-  </div>
   <div class="row">
     <div class="col-12">
       <%= link_to "My rentals (as a bike user)", rents_path, class: "ms-3 text-warning" %>
     </div>
-    <div class="col-12">
-      <%= link_to "My rentals (as an owner)", owner_rents_rents_path, class: "ms-3 text-warning" %>
-    </div>
-    <div class="col-12">
-      <%= link_to 'Back to bikes index', bikes_path %>
-    </div>
   </div>
 
   <div class ="container mt-3">
-    <h1> My bikes available for rental </h1>
+    <h2> My bikes available for rental </h2>
     <table class="table">
       <thead>
         <tr>
@@ -39,32 +34,10 @@
   </div>
 
   <div class ="container mt-3">
-  <h1> My current bookings' requests</h1>
-    <table class="table">
-    <thead>
-      <tr>
-        <th>Bike Brand</th>
-        <th>Bike Model</th>
-        <th>Start date</th>
-        <th>End date</th>
-        <th>Booking duration</th>
-        <th>Total Price</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @rents.each do |rent| %>
-        <tr>
-          <td><%= rent.bike.brand %></td>
-          <td><%= rent.bike.model %></td>
-          <td><%= rent.start_date %></td>
-          <td><%= rent.end_date %></td>
-          <td><%= rent.rental_duration %> hours</td>
-          <td><%= rent.total_price %>€</td>
-          <td><%= rent.status %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <h2> My current bookings' requests</h2>
+    <div class="col-12">
+      <p>You currently have <%= @owner_rent.length%> rents</p>
+      <%=link_to "My rentals (as an owner)", owner_rents_rents_path, class: "ms-3 text-warning" %>
+    </div>
   </div>
  </div>
