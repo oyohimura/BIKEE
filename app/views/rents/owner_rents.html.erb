@@ -8,7 +8,14 @@
       <p>From:           <%= rent.start_date %> to <%= rent.end_date %>
       <p>Total duration: <%= rent.rental_duration %> hours</p>
       <p>Total price:    <%= rent.total_price %>€</p>
+      <p>Status: <%= rent.status %></p>
       <% total << rent.total_price %>
+      <p>
+        <% if rent.pending? %>
+          <%= link_to 'Approve', approve_request_path(rent), data: {turbo_method: :patch }, class: 'btn btn-success' %>
+          <%= link_to 'Reject', reject_request_path(rent), data: {turbo_method: :patch }, class: 'btn btn-danger' %>
+        <% end %>
+      </p>
     </div>
   <% end %>
 

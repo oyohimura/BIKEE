@@ -1,5 +1,5 @@
 class RentsController < ApplicationController
-  before_action :set_rent, only: [:show, :edit, :update, :destroy]
+  before_action :set_rent, only: %i[show edit update destroy approve reject]
 
   def index
     @rents = Rent.where(bike_id: current_user.bikes.ids)
@@ -27,6 +27,16 @@ class RentsController < ApplicationController
     end
   end
 
+  def approve
+    @rent.update status: 1
+    redirect_to owner_rents_rents_path
+  end
+
+  def reject
+    @rent.update status: 2
+    redirect_to owner_rents_rents_path
+  end
+
   def owner_rents
     bikes = Bike.where(user: current_user)
     @rents = Rent.where(bike: bikes)
@@ -38,12 +48,12 @@ class RentsController < ApplicationController
   end
 
   private
-    def set_rent
-      @rent = Rent.find(params[:id])
-    end
 
-    def rent_params
-      params.require(:rent).permit(:start_date, :end_date, :user_id, :bike_id, :rent_price, :status)
-    end
-
+  def set_rent
+    @rent = Rent.find(params[:id])
   end
+
+  def rent_params
+    params.require(:rent).permit(:start_date, :end_date, :user_id, :bike_id, :rent_price, :status)
+  end
+end

@@ -61,8 +61,7 @@ puts "Generating example rent..."
 rent = Rent.new(
   start_date: "2013-02-02 01:00:00 UTC",
   end_date: "2013-02-04 01:00:00 UTC",
-  rent_price: 50.2,
-  status: 'confirmed'
+  rent_price: 50.2
 )
 rent.user = User.first
 rent.bike = Bike.last
@@ -71,8 +70,7 @@ rent.save!
 rent = Rent.new(
   start_date: "2014-02-02 01:00:00 UTC",
   end_date: "2014-02-04 01:00:00 UTC",
-  rent_price: 50.2,
-  status: 'confirmed'
+  rent_price: 50.2
 )
 rent.user = User.last
 rent.bike = Bike.first
