@@ -35,11 +35,6 @@
           </div>
           <div class="bike-card-actions">
             <%= link_to "More info", bike_path(bike) %>
-            <%= link_to "Edit", edit_bike_path(bike), class: "ms-3 text-warning" %>
-            <%= link_to "Remove", bike_path(bike),
-                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "ms-3 text-danger"
-            %>
           </div>
         </div>
       </div>
