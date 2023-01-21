@@ -2,7 +2,7 @@ class RentsController < ApplicationController
   before_action :set_rent, only: %i[show edit update destroy approve reject]
 
   def index
-    @rents = Rent.where(bike_id: current_user.bikes.ids)
+    @rents = Rent.where(user_id: current_user)
   end
 
   def show

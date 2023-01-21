@@ -1,10 +1,5 @@
 <div class="container mt-3">
-  <div class="row">
-    <h1>Welcome to your dashboard <%= @user.first_name %></h1>
-      <div class="col-12">
-        <%= link_to 'Add a bike', new_bike_path %>
-      </div>
-    </div>
+  <h1>Welcome to your dashboard <%= @user.first_name %></h1>
   <div class="row">
     <div class="col-12">
       <%= link_to "My rentals (as a bike user)", rents_path, class: "ms-3 text-warning" %>
@@ -13,31 +8,50 @@
 
   <div class ="container mt-3">
     <h2> My bikes available for rental </h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Brand</th>
-          <th>Model</th>
-          <th>Price per hour</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @bikes.each do |bike| %>
-          <tr>
-            <td><%= bike.brand %></td>
-            <td><%= bike.model %></td>
-            <td><%= bike.price %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="row">
+      <% @bikes.each do |bike| %>
+        <div class="col-md-4">
+          <div class="bike-card">
+            <div class="bike-card-image" style="background-image: url('<%= cl_image_path bike.picture.key, crop: :fill %>')"></div>
+            <div class="bike-card-content">
+              <div class="bike-card-title">
+                <h4><%= bike.brand %></h4>
+                <h5><%= bike.model %></h5>
+              </div>
+              <div class="flex">
+                <div class="flex align-items-center">
+                  <i class="fa-solid fa-euro-sign"></i>
+                  <span><%= bike.price %></span>
+                </div>
+                <div class="flex align-items-center ms-3">
+                  <i class="fa-light fa-location-dot"></i>
+                  <span><%= bike.location %></span>
+                </div>
+                <div class="flex align-items-center ms-3">
+                  <span>Electric ? <%= bike.electric %></span>
+                </div>
+              </div>
+            </div>
+            <div class="bike-card-actions">
+              <%= link_to "More info", bike_path(bike) %>
+              <%= link_to "Edit", edit_bike_path(bike), class: "ms-3 text-warning" %>
+              <%= link_to "Remove", bike_path(bike),
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                  class: "ms-3 text-danger"
+              %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <h5><i class="fa-solid fa-plus"></i><%= link_to 'Add a bike', new_bike_path %></h5>
+    </div>
   </div>
 
   <div class ="container mt-3">
-  <h2> My current bookings' requests</h2>
+    <h2> My current bookings' requests</h2>
     <div class="col-12">
-      <p>You currently have <%= @owner_rent.length%> rents</p>
+      <h5>You currently have <%= @owner_rent.length%> rents, with <%= @owner_rent.pending.length %> to check.</h5>
       <%=link_to "My rentals (as an owner)", owner_rents_rents_path, class: "ms-3 text-warning" %>
     </div>
   </div>
- </div>
+</div>
