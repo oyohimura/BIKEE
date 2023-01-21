@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_21_091518) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_21_100639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,11 +60,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_091518) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.float "rent_price"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "bike_id"
+    t.integer "status", default: 0
     t.index ["bike_id"], name: "index_rents_on_bike_id"
     t.index ["user_id"], name: "index_rents_on_user_id"
   end

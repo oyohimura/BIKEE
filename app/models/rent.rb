@@ -7,6 +7,8 @@ class Rent < ApplicationRecord
   validates :status, presence: true
   validate :start_end_check
 
+  enum status: %i[pending approved rejected]
+
   def start_end_check
     errors.add(:end_date, "Your start date cannot be after your end date") unless
     self.start_date < self.end_date

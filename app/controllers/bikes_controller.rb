@@ -1,5 +1,4 @@
 class BikesController < ApplicationController
-
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -28,17 +27,17 @@ class BikesController < ApplicationController
     @bike = Bike.new(bike_params)
     @bike.user = current_user
     if @bike.save
-      redirect_to @bike, notice: 'Bike was successfully created.'
+      redirect_to bike_path(@bike), notice: 'Bike was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @bike.update(bike_params)
-      redirect_to @bike, notice: 'Bike was successfully updated.'
+      redirect_to bike_path(@bike), notice: 'Bike was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -54,6 +53,6 @@ class BikesController < ApplicationController
   end
 
   def bike_params
-    params.require(:bike).permit(:brand, :model, :location, :user_id, :price, :electric, :picture)
+    params.require(:bike).permit(:brand, :model, :location, :price, :electric, :picture)
   end
 end
