@@ -10,5 +10,5 @@ class Bike < ApplicationRecord
   validates :price, presence: true, numericality: true
   validates :location, presence: true
   validates :electric, inclusion: [true, false]
-
+  validates :picture, presence: true
 end
