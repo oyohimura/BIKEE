@@ -4,6 +4,13 @@ class BikesController < ApplicationController
 
   def index
     @bikes = Bike.all
+    # The `geocoded` scope filters only flats with coordinates
+    @markers = @bikes.geocoded.map do |bike|
+      {
+        lat: bike.latitude,
+        lng: bike.longitude
+      }
+    end
   end
 
   def show
