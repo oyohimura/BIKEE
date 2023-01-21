@@ -18,7 +18,7 @@
   </div>
 
   <div class="row">
-    <% @bikes.each do |bike| %>
+    <% @bikes[0..3].each do |bike| %>
       <div class="col-md-4">
         <div class="bike-card">
           <div class="bike-card-image" style="background-image: url('<%= cl_image_path bike.picture.key, crop: :fill %>')"></div>
@@ -40,14 +40,6 @@
                 <span>Electric ? <%= bike.electric %></span>
               </div>
             </div>
-          </div>
-          <div class="bike-card-actions">
-            <%= link_to "More info", bike_path(bike) %>
-            <%= link_to "Edit", edit_bike_path(bike), class: "ms-3 text-warning" %>
-            <%= link_to "Remove", bike_path(bike),
-                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "ms-3 text-danger"
-            %>
           </div>
         </div>
       </div>
