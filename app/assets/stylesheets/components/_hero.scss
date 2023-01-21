@@ -1,0 +1,18 @@
+.hero-banner {
+  background-image: url('https://images.unsplash.com/photo-1471506480208-91b3a4cc78be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80');
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
+
+.hero-banner-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-banner-title {
+  color: rgb(61, 57, 57);
+}

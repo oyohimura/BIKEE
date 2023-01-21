@@ -1,21 +1,31 @@
 <div class="container mt-3">
   <div class="row">
-    <div class="col-12">
-      <h1>Welcome to BIKEE - rent a bike anywhere!</h1>
+    <div class="col-12 hero-banner">
+       <div class="text-center hero-banner-content">
+        <h1 class="text-center hero-banner-title">Welcome to BIKEE - rent a bike anywhere!</h1>
+      </div>
     </div>
   </div>
 
+<div class="container mt-3 mb-3">
   <div class="row">
     <div class="col-12">
-      <h1>We are...</h1>
+      <div class="card shadow text-center">
+        <div class="card-body">
+          <h2>Bikee is the brand new cool way to rent bikes between private owners</h2>
+          <p>Choose a bike near you, book it, wait for renter approval, and let's ride !</p>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 text-center mb-4">
       <h1>Our bike collection below!</h1>
     </div>
   </div>
+
 
   <div class="row">
     <% @bikes[0..3].each do |bike| %>
@@ -46,9 +56,10 @@
     <% end %>
   </div>
 </div>
-<%= @markers %>
-<div style="width: 100%; height: 600px;"
-     data-controller="map"
-     data-map-markers-value="<%= @markers.to_json %>"
-     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+<div class="container">
+  <div style="width: 100%; height: 600px;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 </div>
