@@ -28,7 +28,7 @@
 
 
   <div class="row">
-    <% @bikes[0..3].each do |bike| %>
+    <% @bikes.each do |bike| %>
       <div class="col-md-4">
         <div class="bike-card">
           <div class="bike-card-image" style="background-image: url('<%= cl_image_path bike.picture.key, crop: :fill %>')"></div>
