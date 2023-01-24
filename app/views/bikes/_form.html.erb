@@ -4,7 +4,10 @@
           <%= f.input :brand, class: "form-control" %>
           <%= f.input :model, class: "form-control" %>
           <%= f.input :price, class: "form-control", input_html: {min: 0} %>
-          <%= f.input :location, class: "form-control" %>
+          <%= f.input :location,
+            input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
+            wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+          %>
           <%= f.input :electric,  as: :select, collection: [['Yes',true], ['No',false]], required: true, class: "form-control" %>
           <%= f.input :picture, as: :file, required: true %>
           <%= f.button :submit, "Submit", class: "btn btn-primary" %>
