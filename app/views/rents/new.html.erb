@@ -6,20 +6,23 @@
           <h2 class="text-center mb-5"> <%= @bike.brand%> <%= @bike.model%> bike</h2>
           <h4 class="text-center mb-5"> Bike available in <%= @bike.location%></h4>
           <img class="card-img-top" src="<%= cl_image_path @bike.picture.key %>" alt="<%= @bike.brand%> <%= @bike.model%>">
-          <%= simple_form_for [@bike, @rent] do |f| %>
-            <div class="form-group text-center mt-3">
-              <%= f.datetime_select :start_date, label: "Start Date", class: "form-control" %>
+          <div class="d-flex justify-content-center">
+            <div class="col-6">
+              <%= simple_form_for [@bike, @rent] do |f| %>
+                <div class="form-group text-center mt-3">
+                  <%= f.datetime_select :start_date, label: "Start Date", class: "form-control" %>
+                </div>
+                <div class="form-group text-center mt-3">
+                  <%= f.datetime_select :end_date, label: "End Date", class: "form-control" %>
+                </div>
+                <div class="form-group text-center mt-3">
+                  <%= f.button :submit, "Book this Bike !", class: "btn btn-primary" %>
+                </div>
+              <% end %>
             </div>
-            <div class="form-group text-center mt-3">
-              <%= f.datetime_select :end_date, label: "End Date", class: "form-control" %>
-            </div>
-            <div class="form-group text-center mt-3">
-              <%= f.button :submit, "Book this Bike !", class: "btn btn-primary" %>
-            </div>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
