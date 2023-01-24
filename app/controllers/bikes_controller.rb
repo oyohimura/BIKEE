@@ -3,8 +3,12 @@ class BikesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @bikes = Bike.all
-    # The `geocoded` scope filters only flats with coordinates
+    if params[:query].present?
+      @bikes = Bike.search_by_location(params[:query])
+    else
+      @bikes = Bike.all
+    end
+    # The `geocoded` scope filters only bikes with coordinates
     @markers = @bikes.geocoded.map do |bike|
       {
         lat: bike.latitude,
