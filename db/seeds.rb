@@ -13,7 +13,7 @@ User.destroy_all
 
 puts "Destroying database!"
 
-puts "Generating example user..."
+puts "Generating example users..."
 user = User.new(
   password: 'Bob123$',
   email: 'bob@gmail.com',
@@ -21,6 +21,8 @@ user = User.new(
   last_name: 'Dupont',
   address: 'rue de la mer, Paris'
 )
+file = URI.open("https://img.huffingtonpost.com/asset/573cd81c1600002a00f93ce9.jpeg?ops=scalefit_720_noupscale")
+user.avatar.attach(io: file, filename: "bob.jpeg", content_type: "image/jpeg")
 user.save!
 
 user = User.new(
@@ -30,6 +32,8 @@ user = User.new(
   last_name: 'Moriconi',
   address: 'rue de la montagne, Pyrenees'
 )
+file = URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1663345881/yaxmecvbe7skaqrm4ziw.jpg")
+user.avatar.attach(io: file, filename: "clara.jpg", content_type: "image/jpg")
 user.save!
 
 file = URI.open("https://cdn.shopify.com/s/files/1/0308/7024/1420/products/blue-R-1_870x580.jpg?v=1668396768")

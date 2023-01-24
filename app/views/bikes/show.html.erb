@@ -1,4 +1,4 @@
-<div class="map" style="background-image: url('<%= cl_image_path @bike.picture.key, height:500, crop: :fill %>')"></div>
+<div class="map" style="background-image: url('<%= cl_image_path @bike.picture.key, :transformation=>[{gravity: 'bicycle', :crop=>"crop"}, {:crop=>"fill"}] %>')"></div>
 
 <div class="container margin-top-negative">
   <div class="row">
@@ -8,9 +8,10 @@
         <p class="bike-show-address"><%= @bike.model %></p>
       </div>
       <div class="bike-show-card">
-        <h3>This bike is available in</h3>
-        <p><%= @bike.location %></p>
-        <div class="map" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=<%= @bike.location %>&zoom=13&scale=2&size=1000x1000&maptype=roadmap&markers=color:red%7C<%= @bike.location %>&key=AIzaSyAPpx0wk4d-AQ8bhe8-a-ihC7NXLoPElhg')"></div>
+        <h3>This bike is available in <strong><%= @bike.location %></strong></h3>
+        <%# <% url = "https://maps.googleapis.com/maps/api/staticmap?center=#{@bike.location}&zoom=13&scale=2&size=1000x1000&maptype=roadmap&markers=color:red%7C&key=AIzaSyAPpx0wk4d-AQ8bhe8-a-ihC7NXLoPElhg" %>
+        <% url = "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/#{@bike.longitude},#{@bike.latitude},10.,0,0/600x600?access_token=#{ENV['MAPBOX_API_KEY']}" %>
+        <div class="map" style="background-image: url(<%= url %>)"></div>
       </div>
     </div>
 
@@ -28,9 +29,9 @@
         <div class="flex">
           <div class="flex">
             <% if @bike.electric%>
-            <p> Electric bike ! </p>
+            <p>Electric bike</p>
             <% else %>
-            <p> Muscular (manual) bike ! </p>
+            <p>Muscular (manual) bike</p>
             <% end %>
           </div>
           <div class="flex ms-3">
