@@ -6,15 +6,20 @@
   </div>
 
   <div class="row">
-    <% @bikes.each do |bike| %>
-      <div class="col-md-4">
-        <div class="bike-card">
-          <%= render 'product-card', bike: bike %>
-          <div class="bike-card-actions">
-            <%= link_to "More info", bike_path(bike) %>
+    <% if @bikes.length.zero? %>
+      <h3>Your search returned no result, sorry! Please try again.</h3>
+      <%= render 'bikes/search-form' %>
+    <% else %>
+      <% @bikes.each do |bike| %>
+        <div class="col-md-4">
+          <div class="bike-card">
+            <%= render 'product-card', bike: bike %>
+            <div class="bike-card-actions">
+              <%= link_to "More info", bike_path(bike) %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

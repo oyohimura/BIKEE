@@ -11,6 +11,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
+          <% unless current_page?(root_path) %>
+            <li class="nav-item">
+              <%= render 'bikes/search-form' %>
+            </li>
+          <% end %>
           <li class="nav-item active">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
