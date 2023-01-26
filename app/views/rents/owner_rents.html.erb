@@ -2,13 +2,19 @@
   <h1>My bikes</h1>
   <% total = [] %>
   <% @rents.each do |rent| %>
-    <div class="bike-card-actions">
-      <p>Bike :          <%= rent.bike.model %> from <%= rent.bike.brand %></p>
-      <p>Rented by :     <%= "#{rent.user.first_name} #{rent.user.last_name}" %></p>
+  <div class="card-product-big  mb-3">
+    <img src=<%= cl_image_path rent.bike.picture.key %> />
+    <div class=".card-product-infos p-1">
+      <p>Bike:           <%= rent.bike.model %> from <%= rent.bike.brand %></p>
+      <p>Rented by:      <%= "#{rent.user.first_name} #{rent.user.last_name}" %></p>
       <p>From:           <%= rent.start_date %> to <%= rent.end_date %>
       <p>Total duration: <%= rent.rental_duration %> hours</p>
       <p>Total price:    <%= rent.total_price %>€</p>
-      <p>Status: <%= rent.status %></p>
+      <% if rent.approved? %>
+        <p>Status: <span class="text-success"><%= rent.status %></span></p>
+      <% else %>
+        <p>Status: <span class="text-danger"><%= rent.status %></span></p>
+      <% end %>
       <% if rent.approved? %>
         <% total << rent.total_price %>
       <% end %>
@@ -19,12 +25,14 @@
         <% end %>
       </p>
     </div>
+  </div>
   <% end %>
-
-  <p>Total earnings</p><%= total.sum %>€
+  <div>
+    <h3 class="mb-5 text-right">Total earnings: <span></span><%= total.sum %>€</h3>
+  </div>
   <h5><i class="fa-solid fa-plus"></i><%= link_to 'Add a bike', new_bike_path %></h5>
   <div class="bike-card-actions">
     <%= link_to 'Back to dashboard', dashboard_path %>
   </div>
-
+</div>
 </div>
