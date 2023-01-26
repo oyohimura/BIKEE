@@ -1,18 +1,12 @@
 <div class="container">
-  <h1>My bookings</h1>
+  <div class="row">
+    <h1>My bookings</h1>
+    <% @rents.each do |rent| %>
+      <%= render 'card-rent', rent: rent %>
+    <% end %>
 
-  <% @rents.each do |rent| %>
     <div class="bike-card-actions">
-      <p>Bike : <%= rent.bike.model %> from <%= rent.bike.brand %></p>
-      <p>User : <%= rent.user.first_name + ' ' + rent.user.last_name %></p>
-      <p>From: <%= rent.start_date.strftime("%d/%m/%Y") %> <%= rent.start_date.strftime('at %I:%M%p') %>
-      to <%= rent.end_date.strftime("%d/%m/%Y") %> <%= rent.end_date.strftime('at %I:%M%p') %> (duration: <%= rent.rental_duration %> h)</p>
-      <p>Cost: <%= rent.total_price %> €</p>
-      <p>Status: <%= rent.status %></p>
+      <%= link_to 'Back to dashboard', dashboard_path %>
     </div>
-  <% end %>
-
-  <div class="bike-card-actions">
-    <%= link_to 'Back to dashboard', dashboard_path %>
-  </div>
+</div>
 </div>
