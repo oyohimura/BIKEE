@@ -1,7 +1,7 @@
-<h2><%= bike.brand %></h2>
-<p><%= bike.model %></p>
-<p>
-  <%= link_to new_bike_rent_path(bike), class: 'btn btn-success text-decoration-none' do %>
-    Book now !
-  <% end %>
-</p>
+<div class="card-product">
+  <%= cl_image_tag bike.picture.key, aspect_ratio: 1, crop: :fill %>
+  <div class="card-product-infos">
+    <h2><%= bike.brand %> <%= bike.model %></h2>
+    <p><%= link_to "Book", bike_path(bike) %></p>
+  </div>
+</div>

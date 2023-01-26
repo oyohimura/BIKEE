@@ -1,8 +1,8 @@
-<div class="map" style="background-image: url('<%= cl_image_path @bike.picture.key, :transformation=>[{gravity: 'bicycle', :crop=>"crop"}, {:crop=>"fill"}] %>')"></div>
 
 <div class="container margin-top-negative">
+  <div class="map" style="background-image: url('<%= cl_image_path @bike.picture.key %>')"></div>
   <div class="row">
-    <div class="col-8">
+    <div class="col-10 mt-2">
       <div class="bike-show-card">
         <h1><%= @bike.brand %></h1>
         <p class="bike-show-address"><%= @bike.model %></p>
@@ -15,21 +15,17 @@
       </div>
     </div>
 
-    <div class="col-4">
-      <div class="bike-show-card">
-        <% unless current_user == @bike.user %>
-          <h5>Book this bike!</h5>
-          <div>
-            <%= link_to new_bike_rent_path(params[:id]), class: 'btn btn-success text-decoration-none' do %>
-              Book now !
-            <% end %>
-          </div>
-        <% end %>
-        <% if current_user == @bike.user %>
-          <%= link_to "Edit my Bike", edit_bike_path(@bike), class: "btn btn-warning text-decoration-none" %>
-        <% end %>
-      </div>
-</div>
+    <div class="col-2 mt-2">
+      <% if current_user == @bike.user %>
+        <a class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Book now !</a>
+      <% else %>
+        <div>
+          <%= link_to new_bike_rent_path(params[:id]), class: 'btn btn-primary' do %>
+            Book now !
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
       </div>
       <div class="bike-show-card">

@@ -4,9 +4,9 @@
   <% @rents.each do |rent| %>
     <div class="bike-card-actions">
       <p>Bike : <%= rent.bike.model %> from <%= rent.bike.brand %></p>
+      <p>User : <%= rent.user.first_name + ' ' + rent.user.last_name %></p>
       <p>From: <%= rent.start_date.strftime("%d/%m/%Y") %> <%= rent.start_date.strftime('at %I:%M%p') %>
-      to <%= rent.end_date.strftime("%d/%m/%Y") %> <%= rent.end_date.strftime('at %I:%M%p') %></p>
-      <p>Duration: <%= rent.rental_duration %> h</p>
+      to <%= rent.end_date.strftime("%d/%m/%Y") %> <%= rent.end_date.strftime('at %I:%M%p') %> (duration: <%= rent.rental_duration %> h)</p>
       <p>Cost: <%= rent.total_price %> €</p>
       <p>Status: <%= rent.status %></p>
     </div>
