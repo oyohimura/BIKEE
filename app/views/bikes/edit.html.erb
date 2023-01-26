@@ -1,12 +1,18 @@
 <div class="container">
-  <h1> Edit a Bike </h1>
-  <%= render 'form', bike: @bike %>
-  <div class="bike-card-actions">
-    <%= link_to 'Back to bikes index', bikes_path %>
-    <%= link_to 'Back to bike', bike_path(@bike) %>
-    <%= link_to "Remove", bike_path(@bike),
-        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-        class: "ms-3 text-danger"
-    %>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h1>Edit a bike</h1>
+      <div class="card bg-light" style="padding: 24px;">
+        <%= render 'form', bike: @bike %>
+      </div>
+      <div class="bike-card-actions text-align-center">
+        <%= link_to 'Back to bikes index', bikes_path %>
+        <%= link_to 'Back to bike', bike_path(@bike) %>
+        <%= link_to "Remove", bike_path(@bike),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+            class: "ms-3 text-danger"
+        %>
+      </div>
+    </div>
   </div>
 </div>

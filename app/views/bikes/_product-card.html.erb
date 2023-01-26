@@ -11,7 +11,9 @@
     </div>
     <div class="flex align-items-center ms-3">
       <i class="bike-card-pin fa-solid fa-location-pin ms-1"></i>
-      <span><%= bike.location %></span>
+      <% results = Geocoder.search(bike.location) %>
+      <% location = results.first.city %>
+      <span><%= location %></span>
     </div>
     <div class="flex align-items-center ms-3">
       <% if bike.electric %>
