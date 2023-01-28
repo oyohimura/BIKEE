@@ -7,7 +7,7 @@
         <h1><strong><%= @bike.brand.capitalize %></strong> <%= @bike.model.capitalize %></h1>
         <p class="bike-show-address">rented by
         <%= link_to user_profile_path(@bike.user) do %>
-          -<%= @bike.user.first_name %>
+          <%= @bike.user.first_name %>
         <% end %>
         </p>
       </div>
@@ -37,7 +37,7 @@
           <h3>Details</h3>
           <div class="flex">
             <div class="flex">
-              <span><i class="fa-solid fa-euro-sign"></i><%= @bike.price.round %>/day</span>
+              <span><i class="fa-solid fa-euro-sign"></i><%= @bike.price.round %>/hr</span>
             </div>
             <div class="flex ms-3">
               <% if @bike.electric %>
