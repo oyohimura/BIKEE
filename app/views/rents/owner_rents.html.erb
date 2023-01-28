@@ -5,7 +5,7 @@
   <div class="card-product-big  mb-3">
     <img src=<%= cl_image_path rent.bike.picture.key %> />
     <div class="card-product-infos p-1">
-      <p>Bike:           <%= rent.bike.model %> from <%= rent.bike.brand %></p>
+      <h5 class="card-title"><%= rent.bike.brand %> <%= rent.bike.model %></h5>
       <p>Rented by:      <%= "#{rent.user.first_name} #{rent.user.last_name}" %></p>
       <p>From:           <%= rent.start_date %> to <%= rent.end_date %>
       <p>Total duration: <%= rent.rental_duration %> hours</p>
