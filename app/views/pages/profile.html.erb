@@ -9,8 +9,10 @@
             class: 'rounded-circle img-fluid' %>
             <h5 class="my-3"><%= @user.first_name %></h5>
             <% results = Geocoder.search(@user.address) %>
-            <% location = results.first.city %>
-            <p class="text-muted mb-4"><%= location %></p>
+            <% unless results.nil? %>
+              <% location = results.first.city %>
+              <p class="text-muted mb-4"><%= location %></p>
+            <% end %>
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
