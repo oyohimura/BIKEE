@@ -1,13 +1,18 @@
 <div class="bike-card-image" style="background-image: url('<%= cl_image_path bike.picture.key %>')"></div>
-<div class="bike-card-content">
+<div class="bike-card-content parent">
   <div class="bike-card-title">
     <h4><%= bike.brand %></h4>
     <h5><%= bike.model %></h5>
   </div>
+  <div class="child">
+    <%= link_to user_profile_path(bike.user) do %>
+      <%= cl_image_tag bike.user.avatar.key, :transformation=>[{gravity: 'head', :crop=>"crop"}, {:height=>35, :width=>35, :crop=>"fill"}], class: 'avatar' %>
+    <% end %>
+  </div>
   <div class="flex">
     <div class="flex align-items-center">
-      <i class="fa-solid fa-euro-sign"></i>
-      <span><%= bike.price %>/day</span>
+      <i class="fa-solid fa-euro-sign"> </i>
+      <span><%= bike.price.round %>/day</span>
     </div>
     <div class="flex align-items-center ms-3">
       <i class="bike-card-pin fa-solid fa-location-pin ms-1"></i>
@@ -17,9 +22,9 @@
     </div>
     <div class="flex align-items-center ms-3">
       <% if bike.electric %>
-        <span>Electric</span>
+        <span><i class="fa-solid fa-bolt"></i> Electric</span>
       <% else %>
-        <span>Manual</span>
+        <span><i class="fa-solid fa-dumbbell"></i> Manual</span>
       <% end %>
     </div>
   </div>

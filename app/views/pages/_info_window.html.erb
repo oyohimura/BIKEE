@@ -1,5 +1,5 @@
 <div class="card-product">
-  <%= cl_image_tag bike.picture.key, aspect_ratio: 1, crop: :fill %>
+  <%= cl_image_tag bike.picture.key, class: 'card-product', aspect_ratio: 1, crop: :fill %>
   <div class="card-product-infos">
     <h2><%= bike.brand %> <%= bike.model %></h2>
     <p><%= link_to "Book", bike_path(bike) %></p>
