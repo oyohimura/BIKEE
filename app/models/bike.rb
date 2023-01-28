@@ -11,6 +11,7 @@ class Bike < ApplicationRecord
   validates :location, presence: true
   validates :electric, inclusion: [true, false]
   validates :picture, presence: true
+  validates :description, length: { minimum: 10 }
 
   include PgSearch::Model
   pg_search_scope :search_by_location,
