@@ -123,20 +123,20 @@ puts "Generating sixth bike..."
 puts "Generating 2 example rents..."
 rent = Rent.new(
   start_date: "2013-02-02 01:00:00 UTC",
-  end_date: "2013-02-04 01:00:00 UTC",
-  rent_price: 50.2
+  end_date: "2013-02-04 01:00:00 UTC"
 )
 rent.user = User.where(first_name: 'Yamato').first
 rent.bike = Bike.where(brand: 'Trek').first
-rent.save
+rent.rent_price = Bike.where(brand: 'EDEN-BIKES').first.price
+rent.save!
 
 rent = Rent.new(
   start_date: "2014-02-02 01:00:00 UTC",
-  end_date: "2014-02-04 01:00:00 UTC",
-  rent_price: 50.2
+  end_date: "2014-02-04 01:00:00 UTC"
 )
 rent.user = User.where(first_name: 'Clara').first
 rent.bike = Bike.where(brand: 'EDEN-BIKES').first
-rent.save
+rent.rent_price = Bike.where(brand: 'EDEN-BIKES').first.price
+rent.save!
 
 puts "Finished!"
