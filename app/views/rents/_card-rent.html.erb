@@ -1,38 +1,41 @@
-<div class="col-lg-4">
-    <div class="card card-margin">
-        <div class="card-header no-border">
+
+  <div class="card-product-big">
+        <img src=<%= cl_image_path rent.bike.picture.key %> />
+        <div class="card-product-infos p-1">
+          <div class="card-header no-border">
             <% results = Geocoder.search(rent.bike.location) %>
             <% location = results.first.city %>
-            <h5 class="card-title"><%= rent.bike.model %> in <strong><%= location %></strong></h5>
-        </div>
-        <div class="card-body pt-0">
-            <div class="widget-49">
+            <h5 class="card-title"><%= rent.bike.brand %> <%= rent.bike.model %> in <strong><%= location %></strong></h5>
+          </div>
+          <div class="card-product-infos">
+            <div class="card-body">
+              <div class="widget-49">
                 <div class="widget-49-title-wrapper">
-                    <div class="widget-49-date-warning">
-                        <span class="widget-49-date-month">start:</span>
-                        <span class="widget-49-date-day"><%= rent.start_date.strftime("%d") %></span>
-                        <span class="widget-49-date-month"><%= rent.start_date.strftime("%b") %></span>
-                        <span class="widget-49-date-month"><%= rent.start_date.strftime("%I:%M%p") %></span>
-                    </div>
-                    <div class="widget-49-meeting-info text-center">
-                        <span class="widget-49-pro-title"><%= rent.bike.brand %> <%= rent.bike.model %></span>
-                        <span class="widget-49-meeting-time">Rented by <strong><%= rent.bike.user.first_name %></strong></span>
-                    </div>
-                    <div class="widget-49-date-primary">
-                        <span class="widget-49-date-month">end:</span>
-                        <span class="widget-49-date-day"><%= rent.end_date.strftime("%d") %></span>
-                        <span class="widget-49-date-month"><%= rent.end_date.strftime("%b") %></span>
-                        <span class="widget-49-date-month"><%= rent.end_date.strftime("%I:%M%p") %></span>
-                    </div>
+                  <div class="widget-49-date-warning">
+                      <span class="widget-49-date-month">start:</span>
+                      <span class="widget-49-date-day"><%= rent.start_date.strftime("%d") %></span>
+                      <span class="widget-49-date-month"><%= rent.start_date.strftime("%b") %></span>
+                      <span class="widget-49-date-month"><%= rent.start_date.strftime("%I:%M%p") %></span>
+                  </div>
+                  <div class="widget-49-date-primary">
+                      <span class="widget-49-date-month">end:</span>
+                      <span class="widget-49-date-day"><%= rent.end_date.strftime("%d") %></span>
+                      <span class="widget-49-date-month"><%= rent.end_date.strftime("%b") %></span>
+                      <span class="widget-49-date-month"><%= rent.end_date.strftime("%I:%M%p") %></span>
+                  </div>
                 </div>
-                <ol class="widget-49-meeting-points">
+                <ul class="widget-49-meeting-points">
+                    <li class="widget-49-meeting-item"><span>Rented by <%= rent.bike.user.first_name%></span></li>
                     <li class="widget-49-meeting-item"><span>Rented for <%= rent.rental_duration %> hours</span></li>
                     <li class="widget-49-meeting-item"><span>Cost: <%= rent.total_price %> €</span></li>
-                </ol>
-                <div class="widget-49-meeting-action">
-                    <a href="#" class="btn btn-sm btn-flash-border-warning">Status: <%= rent.status %></a>
-                </div>
+                </ul>
+                <% if rent.approved? %>
+                  <p>Status: <span class="text-success"><%= rent.status %></span></p>
+                <% else %>
+                  <p>Status: <span class="text-danger"><%= rent.status %></span></p>
+                <% end %>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
+      </div>

@@ -1,12 +1,14 @@
 <div class="container">
-  <div class="row">
     <h1>My bookings</h1>
-    <% @rents.each do |rent| %>
-      <%= render 'card-rent', rent: rent %>
-    <% end %>
+    <div class="row">
+      <% @rents.each do |rent| %>
+        <div class="col-6">
+          <%= render 'card-rent', rent: rent %>
+        </div>
+      <% end %>
+    </div>
 
     <div class="bike-card-actions">
       <%= link_to 'Back to dashboard', dashboard_path %>
     </div>
-</div>
 </div>
