@@ -3,7 +3,7 @@
   <div class="card-product-infos p-1">
     <div class="card-header no-border">
       <% results = Geocoder.search(rent.bike.location) %>
-      <% if results.nil? %>
+      <% if results.length.zero? %>
         <% location = rent.bike.location %>
       <% else %>
         <% location = results.first.city %>
