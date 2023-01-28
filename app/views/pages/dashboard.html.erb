@@ -20,7 +20,7 @@
         </div>
       <% end %>
       <h5><i class="fa-solid fa-plus"></i><%= link_to 'Add a bike', new_bike_path %></h5>
-      <h5>You currently have <%= @owner_rent.length%> rents, with <%= @owner_rent.pending.length %> to check.  <%=link_to "My rentals", owner_rents_rents_path %></h5>
+      <h5>You currently have <%= pluralize @owner_rent.length, "rent" %>, with <%= @owner_rent.pending.length %> to check. <%=link_to "My rentals", owner_rents_rents_path %></h5>
     </div>
   </div>
 

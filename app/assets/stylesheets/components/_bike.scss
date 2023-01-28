@@ -20,12 +20,23 @@
 .bike-card-image {
   height: 200px;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .bike-card-content {
   padding: 24px;
   background-color: #F8F9FA;
+}
+
+.parent {
+  position: relative;
+}
+
+.child {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .bike-card-actions {

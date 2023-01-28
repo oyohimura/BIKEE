@@ -3,7 +3,8 @@
     params[:query],
     class: "form-control",
     input_html: {data: {location_autocomplete_target: "query"}, class: "d-none"},
-    wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+    wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}},
+    placeholder: "Cap Ferret? ... 🤔"
   %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+  <%= submit_tag "Find a bike!", class: "btn btn-secondary" %>
 <% end %>

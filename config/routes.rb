@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :owner_rents
     end
   end
-  get 'profile/:user_id', to: 'pages#profile'
+  get 'profile/:user_id', to: 'pages#profile', as: 'user_profile'
   get 'dashboard', to: 'pages#dashboard'
   patch 'rents/:id/approve', to: 'rents#approve', as: 'approve_request'
   patch 'rents/:id/reject', to: 'rents#reject', as: 'reject_request'
