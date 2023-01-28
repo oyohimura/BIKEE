@@ -4,7 +4,11 @@
         <div class="card-product-infos p-1">
           <div class="card-header no-border">
             <% results = Geocoder.search(rent.bike.location) %>
-            <% location = results.first.city %>
+            <% if results.nil? %>
+              <% location = rent.bike.location %>
+            <% else %>
+              <% location = results.first.city %>
+            <% end %>
             <h5 class="card-title"><%= rent.bike.brand %> <%= rent.bike.model %> in <strong><%= location %></strong></h5>
           </div>
           <div class="card-product-infos">
