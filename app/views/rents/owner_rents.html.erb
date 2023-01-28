@@ -1,38 +1,47 @@
 <div class="container">
-  <h1>My bikes</h1>
-  <% total = [] %>
-  <% @rents.each do |rent| %>
-  <div class="card-product-big  mb-3">
-    <img src=<%= cl_image_path rent.bike.picture.key %> />
-    <div class="card-product-infos p-1">
-      <h5 class="card-title"><%= rent.bike.brand %> <%= rent.bike.model %></h5>
-      <p>Rented by:      <%= "#{rent.user.first_name} #{rent.user.last_name}" %></p>
-      <p>From:           <%= rent.start_date %> to <%= rent.end_date %>
-      <p>Total duration: <%= rent.rental_duration %> hours</p>
-      <p>Total price:    <%= rent.total_price %>€</p>
-      <% if rent.approved? %>
-        <p>Status: <span class="text-success"><%= rent.status %></span></p>
-      <% else %>
-        <p>Status: <span class="text-danger"><%= rent.status %></span></p>
-      <% end %>
-      <% if rent.approved? %>
-        <% total << rent.total_price %>
-      <% end %>
-      <p>
-        <% if rent.pending? %>
-          <%= link_to 'Approve', approve_request_path(rent), data: {turbo_method: :patch }, class: 'btn btn-success' %>
-          <%= link_to 'Reject', reject_request_path(rent), data: {turbo_method: :patch }, class: 'btn btn-danger' %>
+  <h1>My rentals</h1>
+
+  <% if @rents.length.zero? %>
+    You have no rents.
+    <h5><i class="fa-solid fa-plus"></i><%= link_to 'Add a bike', new_bike_path %></h5>
+    <div class="bike-card-actions">
+      <%= link_to 'Back to dashboard', dashboard_path %>
+    </div>
+  <% else %>
+    <% total = [] %>
+    <% @rents.each do |rent| %>
+    <div class="card-product-big  mb-3">
+      <img src=<%= cl_image_path rent.bike.picture.key %> />
+      <div class="card-product-infos p-1">
+        <h5 class="card-title"><%= rent.bike.brand %> <%= rent.bike.model %></h5>
+        <p>Rented by:      <%= "#{rent.user.first_name} #{rent.user.last_name}" %></p>
+        <p>From:           <%= rent.start_date %> to <%= rent.end_date %>
+        <p>Total duration: <%= rent.rental_duration %> hours</p>
+        <p>Total price:    <%= rent.total_price %>€</p>
+        <% if rent.approved? %>
+          <p>Status: <span class="text-success"><%= rent.status %></span></p>
+        <% else %>
+          <p>Status: <span class="text-danger"><%= rent.status %></span></p>
         <% end %>
-      </p>
+        <% if rent.approved? %>
+          <% total << rent.total_price %>
+        <% end %>
+        <p>
+          <% if rent.pending? %>
+            <%= link_to 'Approve', approve_request_path(rent), data: {turbo_method: :patch }, class: 'btn btn-success' %>
+            <%= link_to 'Reject', reject_request_path(rent), data: {turbo_method: :patch }, class: 'btn btn-danger' %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <% end %>
+    <div>
+      <h3 class="mb-5 text-right">Total earnings: <span></span><%= total.sum %>€</h3>
+    </div>
+    <h5><i class="fa-solid fa-plus"></i><%= link_to 'Add a bike', new_bike_path %></h5>
+    <div class="bike-card-actions">
+      <%= link_to 'Back to dashboard', dashboard_path %>
     </div>
   </div>
   <% end %>
-  <div>
-    <h3 class="mb-5 text-right">Total earnings: <span></span><%= total.sum %>€</h3>
-  </div>
-  <h5><i class="fa-solid fa-plus"></i><%= link_to 'Add a bike', new_bike_path %></h5>
-  <div class="bike-card-actions">
-    <%= link_to 'Back to dashboard', dashboard_path %>
-  </div>
-</div>
 </div>
