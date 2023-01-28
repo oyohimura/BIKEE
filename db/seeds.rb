@@ -88,7 +88,7 @@ file = URI.open("https://static.cyclelab.eu/velos/trek/2007/highres/FX3Disc_22_3
 bike3 = Bike.new(brand: "Trek", model: "FX 3", location: "Nantes", price: 5, electric: false, user_id: 1,
 description: "My new Trek bike is the ultimate rental for any cycling enthusiast. With its lightweight frame and advanced suspension system, this bike provides a smooth and comfortable ride on any terrain. The powerful brakes and responsive gears make it easy to navigate even the steepest hills and the most challenging trails. The sleek design and high-quality components give it a professional look and feel. Whether I'm exploring the city or hitting the mountains, this bike is the perfect choice for any adventure. I am so excited to take it out and see what it can do!")
 bike3.picture.attach(io: file, filename: "bike_decathlon.jpg", content_type: "image/jpg")
-bike3.user = User.where(first_name: 'Clara').first
+bike3.user = User.where(first_name: 'Yamato').first
 bike3.save
 
 puts "Generating third bike..."
@@ -127,14 +127,14 @@ rent = Rent.new(
 )
 rent.user = User.where(first_name: 'Yamato').first
 rent.bike = Bike.where(brand: 'Trek').first
-rent.rent_price = Bike.where(brand: 'EDEN-BIKES').first.price
+rent.rent_price = Bike.where(brand: 'Trek').first.price
 rent.save!
 
 rent = Rent.new(
   start_date: "2014-02-02 01:00:00 UTC",
   end_date: "2014-02-04 01:00:00 UTC"
 )
-rent.user = User.where(first_name: 'Clara').first
+rent.user = User.where(first_name: 'Yamato').first
 rent.bike = Bike.where(brand: 'EDEN-BIKES').first
 rent.rent_price = Bike.where(brand: 'EDEN-BIKES').first.price
 rent.save!
